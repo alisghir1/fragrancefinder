@@ -1,0 +1,199 @@
+body {
+    background-color: #F7F3E9;
+}
+
+.navbar .nav-item .nav-link.active{
+    color : white;
+    position : relative;
+}
+
+.navbar .nav-item .nav-link.active::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 2px;
+    width: 80%;
+    height: 4px;
+    background-color: white;
+    transform: translateX(-50%);
+}
+
+.navbar .nav-item .nav-link {
+    color : rgba(255, 255, 255, 0.5);
+    font-weight: 700;
+    transition : transform 0.3s, color 0.3s;
+}
+
+.navbar .nav-item:hover .nav-link{
+    color:white;
+    transform: translateY(-3px);
+}
+
+.navbar .navbar-brand {
+    color: white;
+    font-weight: 700;
+}
+.navbar .navbar-brand:hover {
+    color: white;
+}
+.hero {
+    position: relative;
+    width: 100%;
+    height: 85vh;
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: bottom;
+}
+
+.hero-text {
+    position: absolute;
+    top: 40%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    text-align: left;
+}
+
+.hero-title {
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.hero-lead {
+    font-size: 20px;
+}
+
+.hero-btnn {
+    font-size: 16;
+    padding: 5px 20px;
+    font-weight: bold;
+    border : none;
+    border-radius: 10px;
+    color : white;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+}
+
+.hero-btn-prim {
+    background-color: #806FA8;
+}
+
+.hero-btn-prim:hover {
+    transform: scale(1.02);
+    background-color: #6F5F92;
+}
+.hero-btn-sec {
+    background-color: transparent;
+    border: 2px solid #806FA8;
+    color: #806FA8;
+    padding: 3px 20px;
+}
+
+.hero-btn-sec:hover {
+    background-color: rgba(128, 111, 168, 0.1);
+    border-color: #6F5F92;
+    transform: scale(1.02);
+    box-shadow: 0 0 8px rgba(128, 111, 168, 0.3);
+}
+.btnn {
+    font-size: 16;
+    padding: 5px 20px;
+    font-weight: bold;
+    border : none;
+    border-radius: 10px;
+    color : white;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.btnn:hover {
+    transform: translateY(-1px);
+}
+.btn-recommend {
+    background-color: #806FA8;
+}
+.btn-reset {
+    background-color: #D4A373;           
+}
+.card-form {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    border: 1px solid #bdbdbd;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 910px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    z-index: 2;
+}
+
+.hero-container {
+    position: relative;
+    margin-bottom: 200px;
+}
+
+.carousel {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.carousel-inner {
+    display: flex;
+}
+.carousel-item {
+    transition: transform 0.5s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}   
+.perfume-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 6px 12px rgba(128, 111, 168, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+    background-color: #ffffff;
+    height: 100%;
+    min-height: 470px;
+}
+.perfume-card h5 {
+    font-size: 18px;
+    color: #806FA8;
+    font-weight: bold;
+}
+.perfume-card h6 {
+    font-size: 14px;
+    color: #A89CC8;
+}
+.score .max {
+    color: #4CAF50;
+}
+.score .moye {
+    color: #FFC107;
+}
+.score .min {
+    color: #F44336;
+}
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #806FA8;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+    background-color: #6F5F92;
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        {% load static %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <title>Recommender des parfums</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #A89CC8;">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="{% static 'images/logo_a.png' %}" width="30" height="30" class="d-inline-block align-top mr-10" alt="">Sghir
+                </a>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">L'algorithme</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Comprendre le score</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="hero-container">
+            <div class="hero">
+                <img class="hero-img" src="{%static 'images/test.jpg' %}" alt="">
+                <div class="hero-text">
+                    <h1 class="hero-title">Trouvez le parfum<br> qui reflète votre personnalité</h1>
+                    <p class="hero-lead">Découvrez une sélection de fragrances parfaitement adaptées <br> à votre style et vos préférences. </p>
+                    <div class="hero-btn">
+                        <button type="button" class="hero-btnn hero-btn-prim"> Trouver mon parfum</button>
+                        <button type="button" class="hero-btnn hero-btn-sec">Comment ça marche</button>
+                    </div>
+                </div>
+            </div>
+            <div class="container d-flex justify-content-center">
+                <div class="choix text-center card-form">
+                    <h2 class="home-title">Entrez vos parfums préférés</h2>
+                    <form method="post"> 
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btnn btn-recommend" type="submit">Recommender</button>
+                    <button class="btnn btn-reset" type="submit", name="reset", value="True">Réinitialiser</button>
+                </form>
+                </div>
+            </div>
+        </div>
+        {% if similar_perfumes %}
+        <div class="container mt-5">
+            <h3 class="recommender_title">Parfums recommandés selon vos goûts :</h3>
+            <div id="carouselExample" class="carousel slide">
+                <div class="carousel-inner">
+                    {% for perfume, score in similar_perfumes %}
+                        {% if forloop.first or forloop.counter0|divisibleby:3 %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <div class="row">
+                        {% endif %}                            
+                            <div class="col-md-4">
+                                <div class="card perfume-card">
+                                    <div class="card-body text-center">
+                                        <h6 class="card-brand mb-2 text-muted">{{ perfume.marque }}</h6>
+                                        <h5 class="card-name">{{ perfume.nom }} - {{ perfume.annee }}</h5>
+                                        <div class="score">
+                                            {% if score > 80 %}
+                                                <p class="max"><strong>Score de similarité : </strong>{{ score }}</p>
+                                            {% elif score > 60 %}
+                                                <p class="moye"><strong>Score de similarité : </strong>{{ score }}</p>
+                                            {% elif score > 0 %}
+                                                <p class="min"><strong>Score de similarité : </strong>{{ score }}</p>
+                                            {% endif %}
+                                        </div>
+                                        <div class="perfume-info">
+                                            <strong>Genre :</strong> {{ perfume.genre }} <br>
+                                            <strong>Notes de tête :</strong> <br> {{ perfume.notes_tete }} <br>
+                                            <strong>Notes de cœur :</strong> <br> {{ perfume.notes_coeur }} <br>
+                                            <strong>Notes de fond :</strong> <br> {{ perfume.notes_fond }} <br>
+                                            <strong>Accords principaux :</strong> <br> {{ perfume.accords_principaux }} <br>
+                                            Note moyenne : {{ perfume.note_moyenne }}/5 ({{ perfume.nombre_votes }} votes)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>        
+                        {% if forloop.counter0|add:1|divisibleby:3 or forloop.last %}
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Précédent</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Suivant</span>
+                </button>
+            </div>
+        </div>
+        {% endif %} 
+        {% if notes_frequentes %}
+            <p class="favorite_notes text-center"><strong>Vos notes favorites : </strong></p>
+            <p class="text-center">{{ notes_frequentes|join:", " }}</p>
+        {% endif %}
+        {% if accords_frequents %}
+            <p class="favorite_acc text-center"><strong>Vos accords favoris : </strong></p>
+            <p class="text-center">{{accords_frequents|join:", " }}</p>
+        {% endif %}    
+    </body>
+
+</html>
