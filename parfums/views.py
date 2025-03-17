@@ -11,6 +11,7 @@ def recommender(request):
             return render(request, 'parfums/recommender.html', {'form': form})
         form = RecommendedForm(request.POST or None)
         if form.is_valid():
+           genre = form.cleaned_data.get('genre')
            selected_perfumes = [
                form.cleaned_data[f"parfum{i}"]
                for i in range(1, 6)
@@ -37,7 +38,12 @@ def recommender(request):
 
         parfum_score = {}
 
-        for perfume in Parfum.objects.exclude(id__in=[p.id for p in selected_perfumes]):
+        parfums_filtrés = Parfum.objects.exclude(id__in=[p.id for p in selected_perfumes])
+
+        if genre:
+            parfums_filtrés = parfums_filtrés.filter(genre=genre)
+
+        for perfume in parfums_filtrés:
             score = 0
 
             notes_score = 0
