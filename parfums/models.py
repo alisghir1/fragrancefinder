@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.functions import Lower
 
 class Parfum(models.Model):
     nom = models.CharField(max_length=255)
@@ -12,5 +13,8 @@ class Parfum(models.Model):
     note_moyenne = models.FloatField(null=True, blank=True)
     nombre_votes = models.IntegerField(null=True, blank=True)
 
+    class Meta:
+        ordering = [Lower('marque'), 'genre', Lower('nom')]
+
     def __str__(self):
-        return f"{self.nom} - {self.marque}"
+        return f"{self.marque} - {self.nom} - {self.genre}"
