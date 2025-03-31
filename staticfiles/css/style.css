@@ -1,9 +1,19 @@
 body {
-    background-color: #F7F3E9;
+    background-color: #F5F2EC;
+    margin: 0;
+}
+
+.navbar {
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
 }
 
 .navbar .nav-item .nav-link.active{
-    color : white;
+    color : #FFFFFF;
     position : relative;
 }
 
@@ -14,47 +24,54 @@ body {
     bottom: 2px;
     width: 80%;
     height: 4px;
-    background-color: white;
+    background-color: #FFFFFF;
     transform: translateX(-50%);
 }
 
 .navbar .nav-item .nav-link {
-    color : rgba(255, 255, 255, 0.5);
+    color : rgba(255, 255, 255, 0.6);
     font-weight: 700;
     transition : transform 0.3s, color 0.3s;
 }
 
 .navbar .nav-item:hover .nav-link{
-    color:white;
+    color:#FFFFFF;
     transform: translateY(-3px);
 }
 
 .navbar .navbar-brand {
-    color: white;
+    color: #FFFFFF;
     font-weight: 700;
 }
 .navbar .navbar-brand:hover {
-    color: white;
+    color: #FFFFFF;
 }
 .hero {
     position: relative;
     width: 100%;
-    height: 85vh;
+    height: 95vh;
+    overflow: hidden;
 }
 
 .hero-img {
+    position : absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: bottom;
+    object-position: top;
+    z-index: 1;
 }
 
 .hero-text {
-    position: absolute;
-    top: 40%;
-    left: 30%;
+    position: relative;
+    color: white;
+    top: 45%;
+    left: 62%;
     transform: translate(-50%, -50%);
     text-align: left;
+    z-index: 2;
 }
 
 .hero-title {
@@ -79,25 +96,25 @@ body {
 }
 
 .hero-btn-prim {
-    background-color: #806FA8;
+    background-color: #5C4B51;
 }
 
 .hero-btn-prim:hover {
     transform: scale(1.02);
-    background-color: #6F5F92;
+    background-color: #7A686E;
 }
 .hero-btn-sec {
     background-color: transparent;
-    border: 2px solid #806FA8;
-    color: #806FA8;
+    border: 2px solid #F5F2EC;
+    color: #F5F2EC;
     padding: 3px 20px;
 }
 
 .hero-btn-sec:hover {
-    background-color: rgba(128, 111, 168, 0.1);
-    border-color: #6F5F92;
+    background-color: rgba(245, 242, 236, 0.1);
+    border-color: #F5F2EC;
     transform: scale(1.02);
-    box-shadow: 0 0 8px rgba(128, 111, 168, 0.3);
+    box-shadow: 0 0 10px rgba(245, 242, 236, 0.4);
 }
 .btnn {
     font-size: 16;
@@ -110,10 +127,10 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .btnn:hover {
-    transform: translateY(-1px);
+    transform: scale(1.02);
 }
 .btn-recommend {
-    background-color: #806FA8;
+    background-color: #5C4B51;
 }
 .btn-reset {
     background-color: #D4A373;           
@@ -127,11 +144,11 @@ body {
     position: absolute;
     top: 100%;
     left: 50%;
-    border: 1px solid #bdbdbd;
+    border: 1px solid #D6D0C4;
     transform: translate(-50%, -50%);
-    width: 80%;
+    width: 60%;
     max-width: 1130px;
-    background-color: white;
+    background-color: #FFF8F0;
     padding: 30px;
     border-radius: 40px;
     z-index: 2;
@@ -142,63 +159,205 @@ body {
     margin-bottom: 250px;
 }
 
-.carousel {
-    margin-top: 20px;
-    margin-bottom: 20px;
+.carousel-wrapper {
+    padding: 1rem 8rem 2rem 8rem;
+    background-color: #F5F2EC;
 }
-.carousel-inner {
+
+.carousel-scroll-wrapper {
     display: flex;
+    align-items: center;
+    gap: 1rem;
 }
-.carousel-item {
-    transition: transform 0.5s ease-in-out;
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-}   
+
+.carousel-scroll-container {
+    flex: 1;
+    overflow: hidden;
+}
+
+.carousel-scroll {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 350px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    gap: 20px;
+    padding: 0 8rem 10px 8rem;
+    -webkit-overflow-scrolling: touch;
+    justify-content: start;
+}
+
+.carousel-scroll::-webkit-scrollbar {
+    height: 8px;
+}
+.carousel-scroll::-webkit-scrollbar-thumb {
+    background-color: #C4B7D0;
+    border-radius: 10px;
+}
+.carousel-scroll::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.spacer {
+    width: 1rem;
+    flex-shrink: 0;
+}
+
 .perfume-card {
+    width: 100%;
+    scroll-snap-align: start;
+    background-color: #FFF8F0;
+    box-shadow: 0 6px 12px rgba(92, 75, 81, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.perfume-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(92, 75, 81, 0.2);
+}
+
+.perfume-card h5 {
+    font-size: 16px;
+    color: #5C4B51;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.perfume-card h6 {
+    font-size: 13px;
+    color: #A489B3;
+    margin-bottom: 5px;
+}
+
+.perfume-info {
+    font-size: 14px;
+    color: #5a5a5a;
+    line-height: 1.6;
+    text-align: left;
+    margin-top: 15px;
+}
+
+.score .max { color: #4CAF50; }
+.score .moye { color: #FFC107; }
+.score .min { color: #5a11cf; }
+
+.carousel-arrow {
+    background-color: #5C4B51;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+    height: fit-content;
+}
+
+.carousel-arrow:hover {
+    background-color: #3B3C59;
+}
+.sghir-profile {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    box-shadow: 0 6px 12px rgba(128, 111, 168, 0.2);
-    border-radius: 15px;
-    padding: 20px;
-    background-color: #ffffff;
-    height: 100%;
-    min-height: 600px;
+    align-items: flex-start;
+    padding: 40px 60px;
+    position: relative;
+    height: 360px;
+    margin: 60px auto;
+    width: 80%;
+    max-width: 900px;
+    background: url("/static/images/text5.jpg") center no-repeat;
+    background-size: cover;
+    color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
 }
-.perfume-card h5 {
-    font-size: 18px;
-    color: #806FA8;
+
+.sghir-content {
+    max-width: 500px;
+    text-align: left;
+}
+
+.sghir-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.sghir-description {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.sghir-links {
+    margin-top: 20px;
+}
+
+.sghir-link {
+    display: inline-block;
+    padding: 5px 10px;
     font-weight: bold;
-}
-.perfume-card h6 {
-    font-size: 14px;
-    color: #A89CC8;
-}
-.score .max {
-    color: #4CAF50;
-}
-.score .moye {
-    color: #FFC107;
-}
-.score .min {
-    color: #5a11cf;
-}
-.carousel-control-prev,
-.carousel-control-next {
-    width: 5%;
+    color: white;
+    background-color: #5C4B51;
+    border: 2px solid #5C4B51;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    width: 300px;
+    text-align: center;
 }
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    background-color: #806FA8;
+.sghir-link:hover {
+    background-color: #7A686E;
+    border-color: #7A686E;
+    transform: scale(1.02);
+}
+
+.sghir-signature {
+    position: absolute;
+    top: 50%;
+    right: 70px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.signature-photo {
+    width: 250px;
+    height: 250px;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    object-fit: cover;
+    border: 2px solid white;
 }
 
-.carousel-control-prev-icon:hover,
-.carousel-control-next-icon:hover {
-    background-color: #6F5F92;
+.profile-links {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.profile-links li img {
+    width: 28px;
+    height: 28px;
+    filter: brightness(0) invert(1);
+    transition: transform 0.2s ease;
+}
+
+.profile-links li img:hover {
+    transform: scale(1.1);
 }
