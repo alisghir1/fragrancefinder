@@ -14,7 +14,7 @@ def recommender(request):
            genre = form.cleaned_data.get('genre')
            selected_perfumes = [
                form.cleaned_data[f"parfum{i}"]
-               for i in range(1, 6)
+               for i in range(1, 4)
                if form.cleaned_data[f"parfum{i}"] is not None
            ]
         if not selected_perfumes:
