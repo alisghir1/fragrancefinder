@@ -104,8 +104,7 @@ body {
 
 .hero-btn-prim:hover {
     transform: scale(1.02);
-    background-color: #1A1A1A;
-    color: #D6D0C4;
+    background-color: #9A8D7C;
 }
 .hero-btn-sec {
     background-color: transparent;
@@ -134,10 +133,19 @@ body {
     transform: scale(1.02);
 }
 .btn-recommend {
-    background-color: #5C4B51;
+    background-color: #8C7E6F;
 }
+
+.btn-recommend:hover {
+    background-color: #9A8D7C;
+}
+
 .btn-reset {
-    background-color: #D4A373;           
+    background-color: #C29C6D;           
+}
+
+.btn-reset:hover {
+    background-color: #B88856;
 }
 
 .home-title {
@@ -199,7 +207,7 @@ body {
     height: 8px;
 }
 .carousel-scroll::-webkit-scrollbar-thumb {
-    background-color: #6c5a5a;
+    background-color: #9A8D7C;
     border-radius: 10px;
 }
 .carousel-scroll::-webkit-scrollbar-track {
@@ -256,7 +264,7 @@ body {
 .score .min { color: #5a11cf; }
 
 .carousel-arrow {
-    background-color: #5C4B51;
+    background-color: #8C7E6F;
     color: white;
     padding: 8px 16px;
     border-radius: 50px;
@@ -269,7 +277,7 @@ body {
 }
 
 .carousel-arrow:hover {
-    background-color: #3B3C59;
+    background-color: #9A8D7C;
 }
 .sghir-profile {
     display: flex;
@@ -315,8 +323,8 @@ body {
     padding: 5px 10px;
     font-weight: bold;
     color: white;
-    background-color: #5C4B51;
-    border: 2px solid #5C4B51;
+    background-color: #8C7E6F;
+    border: 2px solid #8C7E6F;
     text-decoration: none;
     border-radius: 6px;
     transition: all 0.3s ease;
@@ -325,8 +333,8 @@ body {
 }
 
 .sghir-link:hover {
-    background-color: #7A686E;
-    border-color: #7A686E;
+    background-color: #9A8D7C;
+    border-color: #9A8D7C;
     transform: scale(1.02);
 }
 
