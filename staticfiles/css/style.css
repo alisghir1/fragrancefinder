@@ -40,12 +40,14 @@ body {
 }
 
 .navbar .navbar-brand {
+    position: absolute;
     color: #FFFFFF;
     font-weight: 700;
 }
 .navbar .navbar-brand:hover {
     color: #FFFFFF;
 }
+
 .hero {
     position: relative;
     width: 100%;
@@ -96,12 +98,14 @@ body {
 }
 
 .hero-btn-prim {
-    background-color: #5C4B51;
+    background-color: #8C7E6F;
+    color: white;
 }
 
 .hero-btn-prim:hover {
     transform: scale(1.02);
-    background-color: #7A686E;
+    background-color: #1A1A1A;
+    color: #D6D0C4;
 }
 .hero-btn-sec {
     background-color: transparent;
@@ -138,6 +142,7 @@ body {
 
 .home-title {
     margin-bottom: 30px;
+    color: white;
 }
 
 .card-form {
@@ -148,7 +153,9 @@ body {
     transform: translate(-50%, -50%);
     width: 60%;
     max-width: 1130px;
-    background-color: #FFF8F0;
+    background-color: rgba(158,135,97,0.2);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 30px;
     border-radius: 40px;
     z-index: 2;
@@ -192,7 +199,7 @@ body {
     height: 8px;
 }
 .carousel-scroll::-webkit-scrollbar-thumb {
-    background-color: #C4B7D0;
+    background-color: #6c5a5a;
     border-radius: 10px;
 }
 .carousel-scroll::-webkit-scrollbar-track {
@@ -271,14 +278,14 @@ body {
     align-items: flex-start;
     padding: 40px 60px;
     position: relative;
-    height: 360px;
+    height: 300px;
     margin: 60px auto;
     width: 80%;
     max-width: 900px;
     background: url("/static/images/text5.jpg") center no-repeat;
     background-size: cover;
     color: #fff;
-    border-radius: 12px;
+    border-radius: 0px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     overflow: hidden;
 }
@@ -360,4 +367,24 @@ body {
 
 .profile-links li img:hover {
     transform: scale(1.1);
+}
+
+.profile-links-nav {
+    position: absolute;
+    display: flex;
+    gap: 15px;
+    list-style: none;
+    right: 8%;
+    padding: 0;
+    margin: 0;
+}
+.profile-links-nav li img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+    transition: transform 0.3s ease;
+}
+
+.profile-links-nav li img:hover {
+    transform: translateY(-3px);
 }
