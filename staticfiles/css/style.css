@@ -1,6 +1,11 @@
 body {
     background-color: #F5F2EC;
     margin: 0;
+    background-image: url('/static/images/fodn.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .navbar {
@@ -176,7 +181,7 @@ body {
 
 .carousel-wrapper {
     padding: 1rem 8rem 2rem 8rem;
-    background-color: #F5F2EC;
+    background-color: transparent;
 }
 
 .carousel-scroll-wrapper {
