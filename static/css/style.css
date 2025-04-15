@@ -284,6 +284,19 @@ body {
 .carousel-arrow:hover {
     background-color: #9A8D7C;
 }
+
+.favoris-box {
+    display: flex;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.graph {
+    width: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
 .sghir-profile {
     display: flex;
     flex-direction: column;

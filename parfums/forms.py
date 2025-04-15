@@ -1,5 +1,5 @@
 from django import forms
-from .models import Parfum
+from .models import Parfum  
 
 class RecommendedForm(forms.Form):
     GENRE_CHOICES = [

@@ -2,7 +2,64 @@ from django.shortcuts import render
 from collections import Counter
 from .forms import RecommendedForm
 from django.db.models import Q
-from .models import Parfum
+from .models import Parfum 
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+from io import BytesIO
+import base64
+
+def generer_graphique_notes_base64(all_notes):
+    compteur = Counter(all_notes)
+    plus_frequentes = compteur.most_common(7)
+    labels = [note for note, _ in plus_frequentes]
+    valeurs = [count for _, count in plus_frequentes]
+
+    fig, ax = plt.subplots(figsize=(8, 5), facecolor='none')
+    ax.yaxis.set_major_locator(plt.MaxNLocator(integer=True))
+    ax.set_facecolor('none')
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    ax.bar(labels, valeurs, color='#8C7E6F')
+    ax.set_xlabel('Notes')
+    ax.set_ylabel('Occurrences')
+    ax.tick_params(axis='x', rotation=45)
+    plt.tight_layout()
+
+    buffer = BytesIO()
+    plt.savefig(buffer, format='png')
+    plt.close()
+    buffer.seek(0)
+    image_base64 = base64.b64encode(buffer.read()).decode('utf-8')
+    buffer.close()
+    return f"data:image/png;base64,{image_base64}"
+
+def generer_graphique_accords_base64(all_accords):
+    compteur = Counter(all_accords)
+    plus_frequents = compteur.most_common(7)
+    labels = [accord for accord, _ in plus_frequents]
+    valeurs = [count for _, count in plus_frequents]
+
+    fig, ax = plt.subplots(figsize=(8, 5), facecolor='none')
+    ax.yaxis.set_major_locator(plt.MaxNLocator(integer=True))
+    ax.set_facecolor('none')
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+
+    ax.bar(labels, valeurs, color='#8C7E6F')
+    ax.set_xlabel('Accords')
+    ax.set_ylabel('Occurrences')
+    ax.tick_params(axis='x', rotation=45)
+    plt.tight_layout()
+
+    buffer = BytesIO()
+    plt.savefig(buffer, format='png')
+    plt.close()
+    buffer.seek(0)
+    image_base64 = base64.b64encode(buffer.read()).decode('utf-8')
+    buffer.close()
+
+    return f"data:image/png;base64,{image_base64}"
 
 def recommender(request):
     if request.method == "POST":
@@ -29,12 +86,18 @@ def recommender(request):
         note_count = Counter(all_notes)
         notes_frequentes =  [note for note, count in note_count.most_common(7)]
 
+        graph_base64 = generer_graphique_notes_base64(all_notes)
+
+
         all_accords = []
         for perfume in selected_perfumes:
             all_accords.extend(perfume.accords_principaux.split(','))
         
         accords_count = Counter(all_accords)
         accords_frequents = [note for note, count in accords_count.most_common(7)]
+
+        graph_accords_base64 = generer_graphique_accords_base64(all_accords)
+
 
         parfum_score = {}
 
@@ -93,7 +156,9 @@ def recommender(request):
                         'selected_perfume' : selected_perfumes,
                         'similar_perfumes' : top_perfumes,
                         'notes_frequentes' : notes_frequentes,
-                        'accords_frequents' : accords_frequents})
+                        'accords_frequents' : accords_frequents,
+                        'graph_base64': graph_base64,
+                        'graph_accords_base64' : graph_accords_base64})
     else:
         form =RecommendedForm()
     return render(request, 'parfums/recommender.html', {'form' : form})

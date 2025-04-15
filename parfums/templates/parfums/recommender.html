@@ -110,14 +110,31 @@
             </div>
         </div>
         {% endif %}
-        {% if notes_frequentes %}
+        <!--{% if notes_frequentes %}
             <p class="favorite_notes text-center"><strong>Vos notes favorites : </strong></p>
             <p class="text-center">{{ notes_frequentes|join:", " }}</p>
-        {% endif %}
-        {% if accords_frequents %}
+        {% endif %}-->
+        
+        
+        <!--{% if accords_frequents %}
             <p class="favorite_acc text-center"><strong>Vos accords favoris : </strong></p>
             <p class="text-center">{{accords_frequents|join:", " }}</p>
-        {% endif %}
+        {% endif %}-->
+        <div class="favoris-box">
+            {% if graph_base64 %}
+                <div class="graph text-center mt-4">
+                    <h5>Visualisation de vos notes préférées</h5>
+                    <img src="{{ graph_base64 }}" alt="Graphique des notes préférées" class="img-fluid" style="max-width: 600px;">
+                </div>
+            {% endif %}
+            {% if graph_accords_base64 %}
+                <div class="graph text-center mt-4">
+                    <h5>Visualisation de vos accords favoris</h5>
+                    <img src="{{ graph_accords_base64 }}" alt="Graphique des accords favoris" class="img-fluid" style="max-width: 600px;">
+                </div>
+            {% endif %}
+        </div>
+        
         <div class="sghir-profile">
             <div class="sghir-content">
               <h3 class="sghir-title">Un passionné de fragrances à votre écoute</h3>
